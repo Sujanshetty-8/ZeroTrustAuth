@@ -1,5 +1,3 @@
-// src/pages/TaxPortalPage.jsx
-
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -11,20 +9,22 @@ const TaxPortalPage = () => {
   useEffect(() => {
     const callApi = async () => {
       try {
+        // ✅ Ask Auth0 for *Access Token* meant for your API
         const token = await getAccessTokenSilently({
-          audience: "https://gov-portal-api.com",
+          audience: "https://gov-portal-api.com", // must match backend audience
         });
+
+        console.log("Access token retrieved:", token);
 
         const response = await fetch("http://localhost:4000/api/private/tax-data", {
           headers: {
-            // ✅ Corrected: use backticks for template literal
             Authorization: `Bearer ${token}`,
           },
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Failed to fetch data");
+          const errText = await response.text();
+          throw new Error(`Backend error: ${errText}`);
         }
 
         const data = await response.json();
