@@ -12,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       authorizationParams={{
         redirect_uri: window.location.origin,            // ✅ after login, redirect back to app
         audience: "https://gov-portal-api.com",          // ✅ MUST match your API Identifier in Auth0
-        scope: "openid profile email",                   // ✅ optional but recommended
+        scope: "openid profile email read:tax read:health", // ✅ Moved scopes here for consistency
+        // ✅ ADD THIS LINE to force login prompt every time
+        prompt: "login",
       }}
     >
       <App />
