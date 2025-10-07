@@ -1,52 +1,70 @@
-// src/App.jsx
+// File: my-gov-portal-app/src/App.jsx
 
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-// Import our new components and pages
+// ✅ Ensure file paths and extensions match your actual files
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import TaxPortalPage from './pages/TaxPortalPage';
+import HealthPortalPage from './pages/HealthPortalPage'; // ✅ Fixed filename consistency
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   return (
     <BrowserRouter>
-      {/* This is our navigation bar */}
+      {/* ✅ Top Navigation */}
       <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
         <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
         <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
-        <Link to="/tax" style={{ marginRight: '10px' }}>Tax Portal</Link>
+        <Link to="/tax-portal" style={{ marginRight: '10px' }}>Tax Portal</Link>
+        <Link to="/health-portal" style={{ marginRight: '10px' }}>Health Portal</Link>
 
-        {/* Show Login or Logout button */}
-        { !isAuthenticated ? (
-          <button onClick={() => loginWithRedirect()}>Log In</button>
+        {/* ✅ Login / Logout Button */}
+        {!isAuthenticated ? (
+          <button
+            onClick={() =>
+              loginWithRedirect({
+                authorizationParams: {
+                  scope: "openid profile email read:tax read:health", // ✅ Added essential OpenID scopes
+                },
+              })
+            }
+          >
+            Log In
+          </button>
         ) : (
-          <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+          <button
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
             Log Out
           </button>
         )}
       </nav>
 
-      {/* This is where the page content will be displayed */}
+      {/* ✅ Route Container */}
       <div style={{ padding: '20px' }}>
         <Routes>
-          {/* A public route that anyone can see */}
+          {/* Public route */}
           <Route path="/" element={<HomePage />} />
 
-          {/* A private route protected by our guard */}
-          <Route 
-            path="/dashboard" 
-            element={<ProtectedRoute component={DashboardPage} />} 
+          {/* Protected routes */}
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute component={DashboardPage} />}
           />
-          
-          {/* Another private route protected by our guard */}
-          <Route 
-            path="/tax" 
-            element={<ProtectedRoute component={TaxPortalPage} />} 
+          <Route
+            path="/tax-portal"
+            element={<ProtectedRoute component={TaxPortalPage} />}
+          />
+          <Route
+            path="/health-portal"
+            element={<ProtectedRoute component={HealthPortalPage} />}
           />
         </Routes>
       </div>
