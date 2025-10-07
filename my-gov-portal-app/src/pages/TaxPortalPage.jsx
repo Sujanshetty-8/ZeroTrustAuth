@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import incomeImg from './income.jpg'; // Import the image
 
 const TaxPortalPage = () => {
   const [apiMessage, setApiMessage] = useState("");
@@ -44,12 +45,27 @@ const TaxPortalPage = () => {
   }, [getAccessTokenSilently]);
 
   return (
-    <div>
-      <h2>Sensitive Tax Portal Information</h2>
-      <p>Attempting to fetch secret data from the backend...</p>
+    <div style={{ padding: '20px' }}>
+      <img
+        src={incomeImg} // Use imported image
+        alt="Tax Icon"
+        style={{
+          width: '100px',
+          height: '100px',
+          marginBottom: '20px',
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      />
+
+      <div style={{ textAlign: 'center' }}>
+        <h2>Sensitive Tax Portal Information</h2>
+        <p>Attempting to fetch secret data from the backend...</p>
+      </div>
 
       {apiMessage && (
-        <div style={{ color: "green", marginTop: "20px" }}>
+        <div style={{ textAlign: 'center',color: "green", marginTop: "20px" }}>
           <strong>Message from Server:</strong> {apiMessage}
         </div>
       )}

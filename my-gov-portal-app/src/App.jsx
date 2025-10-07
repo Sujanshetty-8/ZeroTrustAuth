@@ -27,7 +27,7 @@ function App() {
 
   // ✅ 3. Call the useIdleTimer hook with a 10-second timeout
   // The timeout is in milliseconds (10 * 1000 = 10000)
-  useIdleTimer({ onIdle: handleIdle, timeout: 10000 });
+  useIdleTimer({ onIdle: handleIdle, timeout: 60000 });
 
   return (
     <BrowserRouter>

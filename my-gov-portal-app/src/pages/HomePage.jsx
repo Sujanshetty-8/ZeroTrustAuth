@@ -30,8 +30,8 @@ const HomePage = () => {
           className="chakra-spinner" // Apply the animation from HomePage.css
           style={{
             position: 'absolute', // Position the image behind the text
-            width: '400px',
-            height: '400px',
+            width: '300px',
+            height: '300px',
             opacity: 0.25, // Make it subtle so text is readable
             zIndex: 0, // Ensure it stays in the background
           }}
@@ -109,7 +109,7 @@ const HomePage = () => {
               e.currentTarget.style.boxShadow = '0 4px 14px 0 #1b5e20';
             }}
           >
-            Income Tax
+            Tax portal
           </button>
         </Link>
         <Link to="/services/parivahan">
