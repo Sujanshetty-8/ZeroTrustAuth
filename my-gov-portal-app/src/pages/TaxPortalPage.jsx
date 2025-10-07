@@ -50,8 +50,8 @@ const TaxPortalPage = () => {
         src={incomeImg} // Use imported image
         alt="Tax Icon"
         style={{
-          width: '100px',
-          height: '100px',
+          width: '200px',
+          height: '200px',
           marginBottom: '20px',
           display: 'block',
           marginLeft: 'auto',
