@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './HomePage.css'; // <-- Import the new CSS file
 
 const HomePage = () => {
   return (
@@ -13,20 +14,44 @@ const HomePage = () => {
         background: 'linear-gradient(135deg, #e7eff9 0%, #ddefff 100%)',
       }}
     >
-      <h1
+      {/* New container for the title and the spinning chakra */}
+      <div
         style={{
-          fontSize: '2.8rem',
-          fontWeight: 'bold',
-          letterSpacing: '1px',
-          color: '#155fa0',
-          textShadow: '1px 1px 12px #b3e5fc',
+          position: 'relative', // Necessary for positioning the image behind
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           marginBottom: '16px',
         }}
       >
-        Unified Government Portal
-      </h1>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/1/17/Ashoka_Chakra.svg"
+          alt="Spinning Ashoka Chakra"
+          className="chakra-spinner" // Apply the animation from HomePage.css
+          style={{
+            position: 'absolute', // Position the image behind the text
+            width: '400px',
+            height: '400px',
+            opacity: 0.25, // Make it subtle so text is readable
+            zIndex: 0, // Ensure it stays in the background
+          }}
+        />
+        <h1
+          style={{
+            fontSize: '2.8rem',
+            fontWeight: 'bold',
+            letterSpacing: '1px',
+            color: '#155fa0',
+            textShadow: '1px 1px 12px #b3e5fc',
+            position: 'relative', // Keep the text on top
+            zIndex: 1,
+          }}
+        >
+          Unified Government Portal
+        </h1>
+      </div>
 
-      <p style={{ fontSize: '1.4rem', color: '#334e68', marginBottom: '48px' }}>
+      <p style={{ fontSize: '1.5rem', color: '#0c243bff', marginBottom: '48px' }}>
         Welcome! Access government services below:
       </p>
 
@@ -37,7 +62,7 @@ const HomePage = () => {
           justifyContent: 'center',
         }}
       >
-        <Link to="/services/election">
+        <Link to="/health-portal">
           <button
             style={{
               padding: '18px 32px',
@@ -59,7 +84,7 @@ const HomePage = () => {
               e.currentTarget.style.boxShadow = '0 4px 14px 0 #1976d2';
             }}
           >
-            Election Commission
+            Health Portal
           </button>
         </Link>
         <Link to="/tax-Portal">

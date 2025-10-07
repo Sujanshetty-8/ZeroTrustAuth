@@ -35,8 +35,7 @@ function App() {
       <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
         <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
         <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
-        <Link to="/tax-portal" style={{ marginRight: '10px' }}>Tax Portal</Link>
-        <Link to="/health-portal" style={{ marginRight: '10px' }}>Health Portal</Link>
+      
 
         {/* ✅ Login / Logout Button */}
         {!isAuthenticated ? (
