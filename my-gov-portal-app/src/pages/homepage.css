@@ -12,3 +12,42 @@
 .chakra-spinner {
   animation: spin 20s linear infinite;
 }
+
+/* Animated background for the home hero */
+@keyframes saffronWhiteGreen {
+  0% {
+    background-color: #fff8e1; /* very soft saffron */
+  }
+  33% {
+    background-color: #ffffff; /* white */
+  }
+  66% {
+    background-color: #e8f8f0; /* very soft green */
+  }
+  100% {
+    background-color: #fff8e1; /* loop back to saffron */
+  }
+}
+
+.home-hero {
+  animation: saffronWhiteGreen 12s ease-in-out infinite;
+  transition: background-color 3s ease-in-out;
+  /* provide a soft radial sheen to add gentle variation */
+  background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.4), transparent 20%), radial-gradient(circle at 90% 80%, rgba(255,255,255,0.25), transparent 25%);
+  background-blend-mode: screen;
+}
+
+/* Slight overlay to keep content readable on all backgrounds */
+.home-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: soften text shadows and colors for pleasant look */
+.home-hero h1 {
+  color: #154a6a; /* deep muted blue */
+}
+
+.home-hero p {
+  color: #0c243bcc;
+}
